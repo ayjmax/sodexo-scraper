@@ -55,35 +55,17 @@ def scrapeDineHall(dineHall: str, URL: str):
                     menuInfo = menuInfo.find_next_sibling('ul')
                     menuLabel = menuLabel.find_next_sibling('div')
 
-
-for dineHall, ids in dineHalls.items():
-    menuId, locationId = ids
-    URL = f"https://menus.sodexomyway.com/BiteMenu/Menu?menuId={menuId}&locationId={locationId}&whereami=http://lehigh.sodexomyway.com/dining-near-me/{dineHall}"
-    
-    print(f'{menuId}, {locationId}')
-    print(URL)
-    
-    scrapeDineHall(dineHall, URL)
-
-
-# list = soup.select('''#menuid-21-day .bite-menu-item .get-nutritioncalculator,
-#                    #menuid-21-day .bite-menu-item .get-nutrition''')
-
-
-
-# with open('output.html', 'w+', encoding='utf-8') as file:
-#     for index, item in enumerate(list):
-#         file.write(item.string + '\n')
+def scrapeAll():
+    for dineHall, ids in dineHalls.items():
+        menuId, locationId = ids
+        URL = f"https://menus.sodexomyway.com/BiteMenu/Menu?menuId={menuId}&locationId={locationId}&whereami=http://lehigh.sodexomyway.com/dining-near-me/{dineHall}"
         
-#         # print (item['class'])
-#         if (item['class'][0] == 'get-nutritioncalculator'):
-#             # print(str(item))
-#             # print(str(item.find_next_sibling('div')))
-            
-#             allergenList = item.find_next_sibling('div')
-#             for allergen in allergenList.findChildren("img"):
-#                 file.write(str(allergen['alt']) + '\n')
-            
-                  
-#         if (index != 0 and index % 2 != 0):
-#             file.write('\n')
+        print(f"Scraping {dineHall}, URL: {URL}")
+        scrapeDineHall(dineHall, URL)
+
+
+if __name__ == "__main__":
+    scrapeAll()
+
+
+
