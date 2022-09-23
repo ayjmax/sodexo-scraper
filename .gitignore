@@ -130,3 +130,6 @@ dmypy.json
 
 # archive
 archive/
+
+#Scraped stuff
+*.txt
